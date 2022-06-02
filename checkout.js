@@ -16,18 +16,53 @@ window.addEventListener("load", ()=>{
 let productsDiv = document.querySelector(".products");
 productsDiv.addEventListener("click", (event)=>{
     if (event.target.className == "minus") {
-        event.target.nextElementSibling.innerText--;
+        let quantityP = event.target.nextElementSibling;
+        if (quantityP.innerText > 1) {
+            quantityP.innerText--;
+            //parameter == selected productInfoDiv
+            calculateProductAndCartTotal(event.target.parentElement.parentElement);
+        }
+        else{
+            if (confirm("Product will be deleted?")) {
+                event.target.parentElement.parentElement.parentElement.remove();
+                calculateCartTotal();
+            }
+        }
+        // console.log(typeof event.target.nextElementSibling.innerText);
         // console.log("minus button clicked");
     }
     else if(event.target.classList.contains("plus")){
         event.target.previousElementSibling.innerText++;
+        //parameter == selected productInfoDiv
+        calculateProductAndCartTotal(event.target.parentElement.parentElement);
         // console.log("plus button clicked");
     }
     else if(event.target.classList.contains("remove-product")){
+        event.target.parentElement.parentElement.parentElement.remove();
+        calculateCartTotal();
         // console.log("remove button clicked");
     }
     else{
         // console.log("other element clicked");
     }
 });
+
+
+//calculate cart and product totals
+const calculateProductAndCartTotal = (productInfoDiv) =>{
+//product calculation
+let quantity =
+let price =
+//cart calculation
+calculateCartTotal();
+}
+
+//calculate cart totals
+const calculateCartTotal = () =>{
+
+}
+
+
+
+
 
